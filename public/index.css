@@ -1,0 +1,45 @@
+.chatBox {
+  display: none;
+  width : 100%;
+}
+
+label {
+  display: block;
+}
+
+#chatInput {
+  width : 80%;
+  display: inline;
+}
+
+#sendChatBtn{
+  width : 15%;
+  display: inline;
+}
+
+.messageContainer{
+  display: none;
+  margin-bottom: 20px;
+  border-bottom: 1px solid grey;
+  padding-bottom: 10px;
+}
+
+#messageUser{
+  display: inline;
+  color : red;
+  font-weight: bold;
+}
+#messageText{
+  display: inline;
+}
+
+.usersOnline{
+  display: inline-block;
+  width : 20%;
+}
+
+.mainContainer{
+  display: inline-block;
+  width : 75%;
+  border : 2px solid black;
+}
