@@ -2,23 +2,51 @@ head
   script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js")
   script(src="socket.io/socket.io.js")
   script(src="./index.js")
+  link(href='https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css')
   link(href='./index.css' rel='stylesheet' type='text/css')
 
 h1 Chatty
-.usersOnline
+// UserName Input
+.usernameForm
+  input#usernameInput(placeholder="Username")
+  button#createUserBtn Join Chat
   
 .mainContainer
+  
+  .channels
+    h2 Chat Channels
+    .newChannelForm
+      input#newChannelInput(placeholder="New Channel")
+      button#newChannelBtn Create
+    .channel-current General
+  
+  .chatContainer
+    .messageContainer
+      h2 Messages
+      //- .message
+      //-   .messageUser James: 
+      //-   .messageText Hello
+      //- .message
+      //-   .messageUser James: 
+      //-   .messageText Hello
+      //- .message
+      //-   .messageUser James: 
+      //-   .messageText Hello
+      //- .message
+      //-   .messageUser James: 
+      //-   .messageText Hello
     
-  // UserName Input
-  .usernameForm
-    input#usernameInput(placeholder="Username")
-    button#createUserButton Create
+    .textChatDivide
     
-  .messageContainer
-    h1 Messages
+    .chatBox
+      textarea#chatInput(placeholder="Type a message (Use @user for private message)")
+      button#sendChatBtn Send
 
-    
-  .chatBox
-    label Global Chat
-    textarea#chatInput(placeholder="Type a message")
-    button#sendChatBtn Send
+  .usersOnline
+    h2 Online Users
+    //- .userOnline James
+    //- .userOnline Joe 
+    //- .userOnline Peter
+    //- .userOnline Tyler 
+    //- .userOnline Kevin
+      

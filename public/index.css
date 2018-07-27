@@ -1,5 +1,104 @@
+*{
+  font-family: helvetica;
+}
+
+.usernameForm{
+  display: flex;
+  width : 50%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#usernameInput{
+  font-size: 20px;
+  padding: 5px;
+  margin-bottom: 5px;
+  width : 100%:
+}
+
+#createUserBtn{
+  width : 45%;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 5px;
+}
+
+.channels {
+  display: flex;
+  flex : 2;
+  flex-direction: column;
+  text-align: center;
+  margin-right: 15px;
+}
+
+.newChannelForm{
+  display: flex;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+#newChannelInput{
+  font-size: 18px;
+}
+
+#newChannelBtn{
+  font-size: 18px;
+}
+
+.channel{
+  font-size: 18px;
+  border : 2px solid black;
+  padding : 10px 0px;
+  margin : 2px 0px;
+  text-align: center;
+  cursor : pointer;
+}
+
+.channel:hover{
+  border: 3px solid blue;
+}
+
+.channel-current{
+  font-weight: bold;
+  color : blue;
+  font-size: 18px;
+  border : 2px solid black;
+  padding : 10px 0px;
+  margin : 2px 0px;
+  text-align: center;
+}
+
+.chatContainer {
+  flex : 8;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.usersOnline{
+  display: flex;
+  flex : 2;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.userOnline{
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+.textChatDivide{
+  border : 0.5px solid green;
+  margin-bottom: 10px;
+}
+
 .chatBox {
-  display: none;
+  display: flex;
+  justify-content: center;
   width : 100%;
 }
 
@@ -18,28 +117,26 @@ label {
 }
 
 .messageContainer{
-  display: none;
-  margin-bottom: 20px;
-  border-bottom: 1px solid grey;
+  display: flex;
+  margin-bottom: 10px;
   padding-bottom: 10px;
+  flex-direction: column;
 }
 
-#messageUser{
+.message{
+  margin-bottom: 5px;
+}
+
+.messageUser{
   display: inline;
   color : red;
   font-weight: bold;
 }
-#messageText{
+.messageText{
   display: inline;
 }
 
-.usersOnline{
-  display: inline-block;
-  width : 20%;
-}
-
 .mainContainer{
-  display: inline-block;
-  width : 75%;
-  border : 2px solid black;
+  display: none;
+  width : 100%;
 }

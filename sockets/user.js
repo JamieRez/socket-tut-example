@@ -1,20 +1,9 @@
-const User = require('../models/user.js');
-module.exports = (io, socket, connectedUsers) => {
-
+module.exports = (io, socket, connectedUsers, channels) => {
 
   socket.on('new user', (username) => {
     socket["username"] = username;
     connectedUsers[username] = socket.id;
-    console.log(connectedUsers);
-    User.findOne({username : username}).then((user) => {
-      //User Found
-      user.isOnline = true;
-    }).catch((err) => {
-      //No User Found
-      let user = new User({username : username});
-      user.isOnline = true;
-      user.save();
-    })
+    socket.join('General');
     io.emit('new user', username);
   })
 
@@ -22,38 +11,34 @@ module.exports = (io, socket, connectedUsers) => {
     socket.emit('get online users', connectedUsers);
   })
 
-  socket.on('new global message', (data) => {
-    io.emit('new global message', data);
+  socket.on('new message', (data) => {
+    channels[data.channel].push({sender : data.sender, message : data.message});
+    io.to(data.channel).emit('new message', data);
   })
 
   socket.on('new direct message', (data) => {
-    console.log(`${data.sender}: ${data.message}`);
-    console.log(connectedUsers);
-    console.log(data.receiver);
-    if(connectedUsers.hasOwnProperty(data.receiver)){
+    if(connectedUsers[data.receiver]){
       let receiverId = connectedUsers[data.receiver];
       //Send to Receiver
-      console.log("WE HERE");
       socket.broadcast.to(receiverId).emit('new direct message', data);
-      // Send to Self
-      socket.emit('new direct message', data);
-    }else{
-      console.log("NO WE NOT");
-      User.findOne({username : data.receiver}).then((user) => {
-        user.incomingMsgs.push(`${data.sender}: ${data.message}`);
-        user.save();
-      })
     }
   })
 
+  socket.on('user changed channel', (newChannel) => {
+    socket.join(newChannel);
+    socket.emit('user changed channel', channels[newChannel]);
+  })
+
+  socket.on('new channel', (newChannel) => {
+    channels[newChannel] = [];
+    socket.join(newChannel);
+    socket.broadcast.emit('new channel', newChannel);
+    socket.emit('user changed channel', channels[newChannel]);
+  })
+
   socket.on('disconnect', () => {
-    User.findOne({username : socket.username}).then((user) => {
-      user.isOnline = false;
-      user.save().then(() => {
-        delete connectedUsers[socket.username]
-        io.emit('user has left', connectedUsers);
-      })
-    })
+    delete connectedUsers[socket.username]
+    io.emit('user has left', connectedUsers);
   });
 
 }
