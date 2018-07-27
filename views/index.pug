@@ -1,11 +1,14 @@
 head
+  
   script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js")
   script(src="socket.io/socket.io.js")
   script(src="./index.js")
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js")
+
   link(href='https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css')
+  link(href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css')
   link(href='./index.css' rel='stylesheet' type='text/css')
 
-h1 Chatty
 // UserName Input
 .usernameForm
   input#usernameInput(placeholder="Username")
@@ -13,40 +16,43 @@ h1 Chatty
   
 .mainContainer
   
-  .channels
-    h2 Chat Channels
-    .newChannelForm
-      input#newChannelInput(placeholder="New Channel")
-      button#newChannelBtn Create
-    .channel-current General
+  .channelsAndUsersOnlineContainer
+    h1.brand Make Chat
+    .channels
+      h2.channelsLabel Channels
+      .newChannelForm
+        input#newChannelInput(placeholder="New Channel")
+        button#newChannelBtn Create
+      .channel-current General
+    .usersOnline
+      h2 Online Users
+      //- .userOnline James
+      //- .userOnline Joe 
+      //- .userOnline Peter
+      //- .userOnline Tyler 
+      //- .userOnline Kevin
   
   .chatContainer
-    .messageContainer
-      h2 Messages
-      //- .message
-      //-   .messageUser James: 
-      //-   .messageText Hello
-      //- .message
-      //-   .messageUser James: 
-      //-   .messageText Hello
-      //- .message
-      //-   .messageUser James: 
-      //-   .messageText Hello
-      //- .message
-      //-   .messageUser James: 
-      //-   .messageText Hello
-    
-    .textChatDivide
-    
-    .chatBox
-      textarea#chatInput(placeholder="Type a message (Use @user for private message)")
-      button#sendChatBtn Send
+    .chatContainerFluid
+      .messageContainer
+        h2 Messages
+        //- .message
+        //-   .messageUser James: 
+        //-   .messageText Hello
+        //- .message
+        //-   .messageUser James: 
+        //-   .messageText Hello
+        //- .message
+        //-   .messageUser James: 
+        //-   .messageText Hello
+        //- .message
+        //-   .messageUser James: 
+        //-   .messageText Hello
+      
+      .textChatDivide
+      
+      .chatBox
+        textarea#chatInput(placeholder="Type a message (Use @user for private message)")
+        button#sendChatBtn.btn Send
 
-  .usersOnline
-    h2 Online Users
-    //- .userOnline James
-    //- .userOnline Joe 
-    //- .userOnline Peter
-    //- .userOnline Tyler 
-    //- .userOnline Kevin
       
