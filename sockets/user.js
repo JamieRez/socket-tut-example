@@ -4,7 +4,7 @@ module.exports = (io, socket, connectedUsers, channels) => {
     socket["username"] = username;
     connectedUsers[username] = socket.id;
     socket.join('General');
-    io.emit('new user', username);
+    io.emit('new user');
   })
 
   socket.on('get online users', () => {

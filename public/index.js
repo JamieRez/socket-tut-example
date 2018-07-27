@@ -4,24 +4,23 @@ $(document).ready(() => {
 
   let currentUser;
 
-  socket.emit('get online users');
   socket.emit('user changed channel', "General");
 
   socket.on('get online users', (users) => {
+    $('.userOnline').remove();
     for(username in users){
-      $('.usersOnline').append(`<p>${username}</p>`);
+      $('.usersOnline').append(`<div class="userOnline">${username}</div>`);
     }
   })
 
   socket.on('new user', (username) => {
-    console.log(`${username} has joined the chat`);
-    $('.usersOnline').append(`<div class="userOnline">${username}</div>`);
+    socket.emit('get online users');
   })
 
   socket.on('user has left', (users) => {
-    $('.usersOnline').empty();
+    $('.userOnline').remove();
     for(username in users){
-      $('.usersOnline').append(`<p>${username}</p>`);
+      $('.usersOnline').append(`<div class=userOnline>${username}</div>`);
     }
   });
 
